@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<!-- head -->
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link rel="stylesheet" href="common/reset.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=IBM+Plex+Sans+JP&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/style.css">
+
+<!-- title -->
+
+<title>MAKINO's ARCHIVE | Portfolio</title>
+
+</head>
+
+<body id="top">
+
+  <!-- ページ内容 -->
+
+  <a href="#top" class="pageTop" aria-label="ページトップへ戻る">
+  ↑
+</a>
+
+
+<!-- Header -->
+<header class="header">
+
+
+<!-- logo -->
+<a href="#top" class="archiveCode" aria-label="ページトップへ">
+  <span class="barcode"></span>
+  <span class="barcodeText">ARCHIVE_057</span>
+</a>
+
+<!-- hamburger -->
+
+<input type="checkbox" id="menuBtn" class="menuBtn">
+<label for="menuBtn"   
+       class="hamburger" 
+       aria-label="メニューを開く">
+</label>
+
+<!-- 背景暗転 -->
+<label for="menuBtn" class="menuOverlay"></label>
+
+<!-- 照明の光 -->
+<div class="menuLightGlow"></div>
+<div class="menuLight"></div>
+
+<!-- nav -->
+  <nav class="nav">
+    <ul>
+      <li>
+        <a href="#about" data-hover="01 / ABOUT">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="#skills" data-hover="02 / SKILLS">
+          Skills
+        </a>
+      </li>
+
+      <li>
+        <a href="#works" data-hover="03 / WORKS">
+          Works
+        </a>
+      </li>
+
+      <li>
+        <a href="#contact" data-hover="04 / CONTACT">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Navの紐 -->
+  <button class="navPull" aria-label="ナビゲーションを表示">
+  <span class="navPullInner">
+    <span class="navPullCord"></span>
+    <span class="navPullKnob"></span>
+  </span>
+</button>
+</header>
+
+<!-- 各section -->
+
+<!-- HERO　section -->
+
+<section class="hero" id="hero">
+  <div class="heroInner">
+
+    <div class="heroContent">
+      <p class="heroSubTitle">
+        WEB / DESIGN / DEVELOPMENT
+      </p>
+
+      <h1 class="heroTitle">
+        MAKINO's<br>
+        ARCHIVE
+
+      </h1>
+
+      <p class="heroText">
+        HTML・CSS・JavaScriptを中心に、
+        見やすさと使いやすさを意識したWeb制作に取り組んでいます。
+      </p>
+
+      <a href="#works" class="heroButton">
+        Worksを見る
+      </a>
+    </div>
+
+    <div class="heroImage">
+      <img src="images/hero.jpeg" alt="窓の外を見つめる犬の写真">
+      <p class="heroImageLabel">SUBJECT / MONSTER</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- About　section -->
+
+<section class="about" id="about">
+  <div class="aboutInner">
+
+    <h2 class="sectionTitle">
+      <span class="sectionNumber">01 /</span>
+      About
+    </h2>
+
+    <div class="researcherFile">
+
+      <p class="fileLabel">RESEARCHER FILE</p>
+
+      <!-- 基本情報 -->
+      <dl class="researcherData">
+
+        <div class="researcherRow">
+          <dt>ID</dt>
+          <dd>057-01</dd>
+        </div>
+
+        <div class="researcherRow">
+          <dt>NAME</dt>
+          <dd>MAKINO MIZUKI</dd>
+        </div>
+
+        <div class="researcherRow">
+          <dt>ROLE</dt>
+           <dd>WEB CREATOR / DEVELOPER / NURSE</dd>
+        </div>
+
+        <div class="researcherRow">
+          <dt>STATUS</dt>
+          <dd>ACTIVE</dd>
+        </div>
+
+      </dl>
+
+
+      <!-- スキャンUI-->
+      <div class="researchScan">
+
+        <div class="scanTarget">
+          <img
+            src="images/profile.jpg"
+            alt="プロフィールイメージ"
+          >
+
+          <span class="corner topLeft"></span>
+          <span class="corner topRight"></span>
+          <span class="corner bottomLeft"></span>
+          <span class="corner bottomRight"></span>
+        </div>
+
+        <ul class="scanList">
+          <li>PROFILE LOADED</li>
+          <li>SKILLS VERIFIED</li>
+          <li>WORKS DETECTED</li>
+          <li>RECORD COMPLETE</li>
+        </ul>
+
+      </div>
+      <!-- ↑ スキャンUIここまで -->
+
+
+      <!-- 自己紹介 -->
+      <div class="researcherSection">
+        <p class="researcherHeading">PROFILE</p>
+
+        <p>
+          現在、訓練校にてWeb制作を学習中。<br>
+          見やすさや使いやすさを意識し、
+          情報を整理して利用者が迷わない設計を心掛けている。<br>
+          IT経験はないが、前職では医療職として9年間従事。
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Skills section -->
+<section class="skills" id="skills">
+  <div class="skillsInner">
+
+    <h2 class="sectionTitle">
+      <span class="sectionNumber">02 /</span>
+      Skills
+    </h2>
+
+    <p class="skillsLabel">
+      SYSTEM / CAPABILITIES
+    </p>
+
+    <div class="skillsList">
+
+      <!-- HTML -->
+      <article class="skillItem">
+        <p class="skillNumber">SKILL_01</p>
+
+        <div class="skillCircle htmlSkill">
+          <div class="skillCircleInner">
+            <span class="skillName">HTML</span>
+          </div>
+        </div>
+
+        <p class="skillCategory">
+          STRUCTURE / MARKUP
+        </p>
+
+        <p class="skillDescription">
+          基本的なWebページの構造を作成。<br>
+          誰が見てもわかりやすいようなHTMLを意識して記述。
+        </p>
+      </article>
+
+
+      <!-- CSS -->
+      <article class="skillItem">
+        <p class="skillNumber">SKILL_02</p>
+
+        <div class="skillCircle cssSkill">
+          <div class="skillCircleInner">
+            <span class="skillName">CSS</span>
+          </div>
+        </div>
+
+        <p class="skillCategory">
+          LAYOUT / RESPONSIVE
+        </p>
+
+        <p class="skillDescription">
+          レイアウトや装飾、レスポンシブ対応を作成。<br>
+          FlexboxやGridを使用したレイアウトを行っている。
+        </p>
+      </article>
+
+
+      <!-- JavaScript -->
+      <article class="skillItem">
+        <p class="skillNumber">SKILL_03</p>
+
+        <div class="skillCircle jsSkill">
+          <div class="skillCircleInner">
+            <span class="skillName">JS</span>
+          </div>
+        </div>
+
+        <p class="skillCategory">
+          DOM / INTERACTION
+        </p>
+
+        <p class="skillDescription">
+          DOM操作やイベント処理を使用し、
+          Webページに基本的な動きを実装している。
+        </p>
+      </article>
+
+
+      <!-- Figma -->
+      <article class="skillItem">
+        <p class="skillNumber">SKILL_04</p>
+
+        <div class="skillCircle figmaSkill">
+          <div class="skillCircleInner">
+            <span class="skillName">Figma</span>
+          </div>
+        </div>
+
+        <p class="skillCategory">
+          UI / PROTOTYPE
+        </p>
+
+        <p class="skillDescription">
+          Webサイトのレイアウト確認やUI設計、
+          デザインカンプの作成に使用。
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Works　section -->
+
+<section class="works" id="works">
+  <div class="worksInner">
+
+    <h2 class="sectionTitle">
+      <span class="sectionNumber">03 /</span>
+      Works
+    </h2>
+
+    <div class="worksList">
+
+      <!-- Work 01 -->
+      <article class="workCard">
+
+        <div class="workCardImage">
+          <img
+            src="images/work01.jpg"
+            alt="演習1のWebサイト"
+          >
+        </div>
+
+        <div class="workCardBody">
+
+          <p class="workNumber">
+            PROJECT_01
+          </p>
+
+          <h3 class="workCardTitle">
+            Webサイト制作演習1
+          </h3>
+
+          <p class="workCardDescription">
+            HTML・CSSを使用して制作。<br>
+            架空のリフォーム会社のWebサイト。
+          </p>
+
+          <div class="workMeta">
+            <p>HTML / CSS</p>
+            <p>制作時間：37時間</p>
+          </div>
+
+          <p class="workCardNotice">
+            ※訓練校の規約により、2027年2月17日までの期間限定公開。
+          </p>
+
+          <div class="workCardLinks">
+           <a href="https://muyehaiyue-png.github.io/exercise-01/" 
+              class="workCardLink">
+              VIEW SITE →
+              </a>
+
+            <a href="https://github.com/muyehaiyue-png/exercise-01" 
+               class="workCardLink">
+               GITHUB →
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+    <!-- Work 02 -->
+      <article class="workCard">
+
+        <div class="workCardImage">
+          <img
+            src="images/work02.jpg"
+            alt="演習2のWebサイト"
+          >
+        </div>
+
+        <div class="workCardBody">
+
+          <p class="workNumber">
+            PROJECT_02
+          </p>
+
+          <h3 class="workCardTitle">
+            Webサイト制作演習2
+          </h3>
+
+          <p class="workCardDescription">
+            HTML・CSS・JavaScriptを使用して制作。<br>
+            架空の台湾旅行Webサイト。
+          </p>
+
+          <div class="workMeta">
+            <p>HTML / CSS / JavaScript</p>
+            <p>制作時間：40時間</p>
+          </div>
+
+          <p class="workCardNotice">
+            ※訓練校の規約により、2027年2月17日までの期間限定公開。
+          </p>
+
+          <div class="workCardLinks">
+            <a href="https://muyehaiyue-png.github.io/exercise-02/" 
+               class="workCardLink">
+               VIEW SITE →
+            </a>
+
+            <a href="https://github.com/muyehaiyue-png/exercise-02" 
+               class="workCardLink">
+               GITHUB →
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+      <!-- Work 03 -->
+<article class="workCard">
+
+  <div class="workCardImage">
+    <img
+      src="images/work02.jpg"
+      alt="演習2をベースに機能追加したWebサイト"
+    >
+  </div>
+
+  <div class="workCardBody">
+
+    <p class="workNumber">
+      PROJECT_03
+    </p>
+
+    <h3 class="workCardTitle">
+      Webサイト制作演習2 / Customize
+    </h3>
+
+    <p class="workCardDescription">
+      work2で制作したWebサイトをベースに、<br>
+      アニメーションやホバー表現などを追加、カスタマイズ版。
+    </p>
+
+    <div class="workMeta">
+      <p>HTML / CSS / JavaScript</p>
+      <p>制作時間：47時間（ベース制作40時間＋追加制作7時間）</p>
+    </div>
+
+    <p class="workCardNotice">
+      ※訓練校の規約により、2027年2月17日までの期間限定公開。
+    </p>
+
+    <div class="workCardLinks">
+      <a href="https://muyehaiyue-png.github.io/exercise-02dx/"
+        class="workCardLink">
+        VIEW SITE →
+      </a>
+
+      <a href="https://muyehaiyue-png.github.io/exercise-02dx/" 
+         class="workCardLink">
+        GITHUB →
+      </a>
+    </div>
+
+  </div>
+
+</article>
+
+    </div>
+
+</section>
+
+
+<!-- Contact　section -->
+
+<!-- Contact section -->
+<section class="contact" id="contact">
+  <div class="contactInner">
+
+    <h2 class="sectionTitle">
+      <span class="sectionNumber">04 /</span>
+      Contact
+    </h2>
+
+    <p class="contactLabel">
+      COMMUNICATION / ACCESS
+    </p>
+
+    <div class="contactBox">
+
+      <div class="contactTextArea">
+        <p class="contactHeading">
+          CONTACT RECORD
+        </p>
+
+        <p class="contactText">
+          制作やお仕事に関するご連絡は、
+          以下の連絡先からお願いいたします。
+        </p>
+      </div>
+
+      <div class="contactLinks">
+
+        <!-- Email -->
+        <a
+          href="mailto:muyehaiyue@gmail.com"
+          class="contactLink"
+        >
+          <span class="contactLinkLabel">EMAIL</span>
+          <span class="contactArrow">↗</span>
+        </a>
+
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com/muyehaiyue-png"
+          class="contactLink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="contactLinkLabel">GITHUB</span>
+          <span class="contactArrow">↗</span>
+        </a>
+
+
+        <!-- X -->
+        <a
+          href="https://x.com/kadaiyou0524"
+          class="contactLink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="contactX">
+            <img
+              src="images/xLogo.png"
+              alt=""
+              class="contactIcon"
+            >
+          </span>
+
+          <span class="contactArrow">↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+
+<footer class="footer">
+  <div class="footerInner">
+
+    <div class="footerMeta">
+
+      <p class="typefaceTitle">
+        TYPEFACE
+      </p>
+
+      <p>
+        IBM Plex Sans JP
+      </p>
+
+      <p>
+        BIZ UDPGothic
+      </p>
+
+      <p>
+        Departure Mono / SIL OFL 1.1
+      </p>
+
+      <p class="copyright">
+        &copy; 2026 MAKINO / END OF RECORD
+      </p>
+
+    </div>
+
+  </div>
+</footer>
+
+<!-- JavaScript -->
+
+<!-- 外部Java Scriptファイルの読み込み -->
+<script src="scripts/script.js"></script>
+
+</body>
+
+</html>

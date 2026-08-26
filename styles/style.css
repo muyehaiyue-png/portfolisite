@@ -1,0 +1,1622 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Departure Mono";
+  src: url("../fonts/DepartureMono-Regular.woff2") 
+      format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*ページトップボタン色変え*/
+:root {
+  --slimeGreen: #7ED957;
+}
+
+
+/* ========================================
+body
+======================================== */
+
+body {
+  font-family: "IBM Plex Sans JP", sans-serif;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: "BIZ UDPGothic", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* =========================
+   Departure Mono
+   システム表示・管理情報
+========================= */
+
+.barcodeText,
+.heroSubTitle,
+.heroImageLabel,
+.sectionNumber,
+.fileLabel,
+.scanList,
+.researcherHeading,
+.skillsLabel,
+.skillNumber,
+.skillCategory,
+.workNumber,
+.contactLabel,
+.contactHeading,
+.footer {
+  font-family: "Departure Mono", monospace;
+}
+
+/* =========================
+pageTopBtn
+========================= */
+.pageTop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+
+  text-decoration: none;
+  font-size: 24px;
+
+  /*アニメーション用*/
+  transition: transform 0.2s ease;
+
+
+  /*画像より前に出すため*/
+  z-index: 9999;
+}
+
+/* Footer付近でスライム化 */
+.pageTop.isSlime {
+  width: 56px;
+  height: 42px;
+
+  border-radius:
+    50% 50% 42% 42% /
+    60% 60% 40% 40%;
+
+  transform: scaleY(0.92);
+
+  background-color: var(--slimeGreen);
+
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    border-radius 0.3s ease,
+    transform 0.3s ease;
+}
+
+/*戻る際の形変更*/
+.pageTop.isMoving {
+  width: 42px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  transform: scaleY(1.15);
+
+  background-color: var(--slimeGreen);
+}
+
+/*アニメーション*/
+.pageTop.isJumping {
+  animation: slimeJump 0.45s ease;
+}
+
+@keyframes slimeJump {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scaleX(1.15) scaleY(0.8);
+  }
+
+  60% {
+    transform: scaleX(0.85) scaleY(1.2) translateY(-10px);
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+/* =========================
+body:Rp
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .pageTop {
+    right: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+
+/* ========================================
+Header
+======================================== */
+
+header {
+  position: relative;/*スマホNavを「画面上端」ではなくheader基準で配置*/
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 40px;
+  padding-right: 24px;
+}
+
+/* =========================
+Logo
+========================= */
+.archiveCode {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.barcode {
+  width: 74px;
+  height: 22px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #1a1a1a 0 2px,
+      transparent 2px 4px,
+      #1a1a1a 4px 5px,
+      transparent 5px 8px
+    );
+}
+
+.barcodeText {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+/* =========================
+Nav
+========================= */
+.nav {
+  margin-left: auto;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.nav a {
+  position: relative;
+  display: inline-block;
+
+  min-width: 90px;
+  text-align: center;
+
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-size: 16px;
+
+  color: #1a1a1a;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  font-size: 0;
+  color: #e66a00;
+}
+
+.nav a:hover::after {
+  content: attr(data-hover);
+
+  font-family: "Departure Mono", monospace;
+  font-size: 16px;
+
+  color: #e66a00;
+}
+
+/* hamburgerはPCでは非表示 */
+.menuBtn,
+.hamburger {
+  display: none;
+}
+
+.navPull {
+  position: fixed;
+  top: 0;
+  right: 48px;
+
+  width: 40px;
+  height: 140px;
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+  z-index: 1200;
+}
+
+/*Navの紐*/
+.navPullInner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 20px;
+  height: 130px;
+
+  transform: translateX(-50%);
+  transform-origin: top center;
+
+  animation: cordSwing 2.8s ease-in-out infinite;
+}
+
+.navPullCord {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 1px;
+  height: 105px;
+
+  background: #555;
+
+  transform: translateX(-50%);
+}
+
+.navPullKnob {
+  position: absolute;
+  top: 103px;
+  left: 50%;
+
+  width: 12px;
+  height: 18px;
+
+  background: #f1efe8;
+  border: 1px solid #999;
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+}
+
+@keyframes cordSwing {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(2deg);
+  }
+}
+
+/*PC版のみの使用*/
+@media screen and (max-width: 767px) {
+  .navPull {
+    display: none;
+  }
+}
+
+/* =========================
+Header:Rp
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  header {
+    padding: 16px 20px;
+   
+    /*固定スイッチ+光源のため*/
+    padding-right: 90px;
+  }
+
+  /* =========================
+   hamburger　menu
+　========================= */
+
+  /* checkboxは非表示 */
+  .menuBtn {
+    display: none;
+  }
+
+  /* hamburger */
+  .hamburger {
+   position: fixed;
+   top: 16px;
+   right: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 54px;
+  height: 70px;
+
+  background: #f4f1e8;
+  border: 1px solid #cfc9bb;
+  border-radius: 6px;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+
+  font-size: 0;
+  cursor: pointer;
+
+  z-index: 1100;
+}
+
+/* スイッチ本体 */
+
+.hamburger::after {
+  content: "NAV / OFF";
+
+  position: absolute;
+  bottom: 4px;
+
+  font-family: "Departure Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+
+  color: #777;
+}
+
+.menuBtn:checked + .hamburger::after {
+  content: "NAV / ON";
+  color: #e66a00;
+}
+
+.hamburger::before {
+  content: "";
+
+  width: 26px;
+  height: 38px;
+
+  background: #ece8dc;
+  border: 1px solid #bdb7aa;
+  border-radius: 3px;
+
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.12);
+
+  transform: perspective(80px) rotateX(-8deg);
+
+  transition: transform 0.2s ease;
+}
+
+.menuBtn:checked + .hamburger::before {
+  transform: perspective(80px) rotateX(8deg);
+}
+
+/* =========================
+   Nav
+========================= */
+
+.nav {
+  position: fixed;
+  top: 200px;
+  right: 30px;
+
+  width: auto;
+  min-height: auto;
+  padding: 0;
+
+  background: transparent;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 1000;
+}
+
+/* スイッチONでNavを表示 */
+.menuBtn:checked ~ .nav {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 28px;
+}
+
+/* ページ → 黒い暗転 → 光 → Nav文字 → スイッチ */
+
+/*暗転*/
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(25, 25, 25, 0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 900;
+}
+
+.menuBtn:checked ~ .menuOverlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* 外側のふわっとした光 */
+.menuLightGlow {
+  position: fixed;
+
+  top: 90px;
+  right: -30px;
+
+  width: 115vw;
+  height: calc(100svh - 90px);
+
+  background: rgba(255, 248, 210, 0.22);
+
+  clip-path: polygon(
+    86% 0,
+    98% 0,
+    100% 100%,
+    0 100%
+  );
+
+  filter: blur(28px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+
+  z-index: 940;
+}
+
+/* 中心の光 */
+.menuLight {
+  position: fixed;
+
+  top: 90px;
+  right: 0;
+
+  width: 100vw;
+  height: calc(100svh - 90px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 252, 225, 0.9),
+    rgba(255, 248, 210, 0.55) 60%,
+    rgba(255, 248, 210, 0.15)
+  );
+
+  /*光源調整*/
+  clip-path: polygon(
+  82% 0,
+  96% 0,
+  100% 100%,
+  0 100%
+);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+
+  z-index: 950;
+}
+
+.menuBtn:checked ~ .menuLightGlow,
+.menuBtn:checked ~ .menuLight {
+  opacity: 1;
+  visibility: visible;
+}
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+  min-height: 80vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 120px 40px 80px;
+
+  background-color: #f5f5f5;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 64px;
+}
+
+@media screen and (max-width: 767px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Hero Text
+========================= */
+
+.heroSubTitle {
+  margin-bottom: 16px;
+
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+
+  color: #e66a00;
+}
+
+.heroTitle {
+  margin-bottom: 24px;
+
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 700;
+
+  line-height: 1;
+  letter-spacing: 0.03em;
+
+  color: #1a1a1a;
+}
+
+.heroText {
+  max-width: 560px;
+
+  margin-bottom: 40px;
+
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  color: #555555;
+}
+
+
+/* =========================
+   Hero Button
+========================= */
+
+.heroButton {
+  display: inline-block;
+
+  padding: 12px 24px;
+
+  color: #1a1a1a;
+  text-decoration: none;
+
+  border: 1px solid #1a1a1a;
+
+  font-size: 14px;
+  letter-spacing: 0.08em;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.heroButton:hover {
+  color: #ffffff;
+  background-color: #e66a00;
+  border-color: #e66a00;
+}
+
+
+/* =========================
+   Hero Image
+========================= */
+
+.heroImage {
+  position: relative;
+  z-index: 1;
+}
+
+/* 下に重なってる紙 */
+.heroImage::before,
+.heroImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+}
+
+/* 1枚目 */
+.heroImage::before {
+  background-color: #e8e8e8;
+  transform: translate(10px, 8px) rotate(0.5deg);
+}
+
+/* 2枚目 */
+.heroImage::after {
+  background-color: #d6d6d6;
+  transform: translate(18px, 18px) rotate(-0.7deg);
+}
+
+.heroImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+  object-position: center;
+
+  filter: grayscale(100%);
+}
+
+
+/* 写真用の小さいラベル */
+.heroImageLabel {
+  position: absolute;
+
+  left: 12px;
+  bottom: 12px;
+
+  margin: 0;
+
+  padding: 6px 10px;
+
+  background-color: #1a1a1a;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================
+   HERO:RP
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .hero {
+    min-height: auto;
+
+    padding: 96px 20px 64px;
+  }
+
+  .heroInner {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .heroTitle {
+    font-size: 48px;
+  }
+
+  .heroText {
+    font-size: 15px;
+  }
+
+  .heroImage {
+    max-width: 420px;
+  }
+
+}
+
+/* ========================================
+About
+======================================== */
+
+.about {
+  padding: 96px 40px;
+  background-color: #f5f5f5;
+}
+
+.aboutInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   Researcher File
+========================= */
+
+.researcherFile {
+  position: relative;
+
+  padding: 40px;
+
+  background-color: #ffffff;
+}
+
+.fileLabel {
+  margin-bottom: 32px;
+
+  font-size: 12px;
+  letter-spacing: 0.12em;
+
+  color: #e66a00;
+}
+
+
+/* =========================
+   Basic Data
+========================= */
+
+.researcherData {
+  margin: 0 0 40px;
+}
+
+.researcherRow {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.researcherRow dt {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+
+  color: #777777;
+}
+
+.researcherRow dd {
+  margin: 0;
+
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+
+/* STATUSだけアクセント */
+.researcherRow:last-child dd {
+  color: #e66a00;
+}
+
+
+/* =========================
+   Scan UI
+========================= */
+
+.researchScan {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+
+  align-items: center;
+  gap: 48px;
+
+  margin-bottom: 40px;
+}
+
+
+/* プロフィール画像 */
+.scanTarget {
+  position: relative;
+
+  width: 180px;
+  aspect-ratio: 3 / 4;
+}
+
+.scanTarget img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: grayscale(100%);
+}
+
+
+/* =========================
+   Target Corners
+========================= */
+
+.corner {
+  position: absolute;
+
+  width: 24px;
+  height: 24px;
+}
+
+.topLeft {
+  top: -7px;
+  left: -7px;
+
+  border-top: 2px solid #e66a00;
+  border-left: 2px solid #e66a00;
+}
+
+.topRight {
+  top: -7px;
+  right: -7px;
+
+  border-top: 2px solid #e66a00;
+  border-right: 2px solid #e66a00;
+}
+
+.bottomLeft {
+  bottom: -7px;
+  left: -7px;
+
+  border-bottom: 2px solid #e66a00;
+  border-left: 2px solid #e66a00;
+}
+
+.bottomRight {
+  right: -7px;
+  bottom: -7px;
+
+  border-right: 2px solid #e66a00;
+  border-bottom: 2px solid #e66a00;
+}
+
+
+/* =========================
+   Scan List
+========================= */
+
+.scanList {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.scanList li {
+  margin-bottom: 14px;
+
+  font-size: 13px;
+  letter-spacing: 0.08em;
+
+  color: #999999;
+}
+
+.scanList li::before {
+  content: "○";
+
+  display: inline-block;
+
+  width: 24px;
+
+  color: #999999;
+}
+
+.scanList li.isDone {
+  color: #1a1a1a;
+}
+
+.scanList li.isDone::before {
+  content: "✓";
+
+  color: #e66a00;
+}
+
+
+/* =========================
+   Profile
+========================= */
+
+.researcherSection {
+  padding-top: 32px;
+
+  border-top: 1px solid #e5e5e5;
+}
+
+.researcherHeading {
+  margin-bottom: 16px;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+
+  color: #e66a00;
+}
+
+.researcherSection p:last-child {
+  max-width: 720px;
+
+  margin-bottom: 0;
+
+  line-height: 1.8;
+
+  color: #555555;
+}
+
+
+/* =========================
+   About : RP
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .about {
+    padding: 64px 20px;
+  }
+
+  .researcherFile {
+    padding: 24px 20px;
+  }
+
+  .researcherRow {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .researchScan {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+  }
+
+  .scanTarget {
+    width: 140px;
+  }
+
+}
+
+/* ========================================
+Works
+======================================== */
+
+.works {
+  padding: 96px 40px;
+  background-color: #ffffff;
+}
+
+.worksInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 見出し */
+.sectionTitle {
+  margin-bottom: 48px;
+
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+
+  color: #1a1a1a;
+}
+
+.sectionNumber {
+  margin-right: 8px;
+  color: #e66a00;
+}
+
+
+/* =========================
+   Works List
+========================= */
+
+.worksList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 48px 32px;
+}
+
+
+/* =========================
+   Work Card
+========================= */
+
+.worksList {
+  display: grid;
+
+  /* 幅を確実に均等にする */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 48px 32px;
+
+  /* 同じ行のカードを揃える */
+  align-items: stretch;
+}
+
+.workCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  background-color: #f5f5f5;
+}
+
+/* カード本文 */
+.workCardBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 24px;
+}
+
+.workCardImage {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/*モノクロ→hoverでカラー*/
+.workCardImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.workCard:hover .workCardImage img {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+/* 管理番号 */
+.workNumber {
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+
+  color: #e66a00;
+}
+
+/* 作品名 */
+.workCardTitle {
+  margin-bottom: 16px;
+
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #1a1a1a;
+}
+
+/* 概要 */
+.workCardDescription {
+  margin-bottom: 24px;
+
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+
+  color: #555555;
+}
+
+/* 使用技術・制作時間 */
+.workMeta {
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  color: #555555;
+}
+
+.workMeta p {
+  margin: 0;
+}
+
+/* 公開期限の注意 */
+.workCardNotice {
+  margin-bottom: 24px;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  color: #d95f02;
+}
+
+/* =========================
+   Links
+========================= */
+
+.workCardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin-top: auto;
+}
+
+.workCardLink {
+  display: inline-block;
+
+  padding-bottom: 4px;
+
+  color: #1a1a1a;
+  text-decoration: none;
+
+  border-bottom: 1px solid #1a1a1a;
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.workCardLink:hover {
+  color: #e66a00;
+  border-color: #e66a00;
+}
+
+/* ========================================
+Skills
+======================================== */
+
+.skills {
+  padding: 96px 40px;
+  background-color: #ffffff;
+}
+
+.skillsInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skillsLabel {
+  margin-bottom: 40px;
+
+  font-size: 12px;
+  letter-spacing: 0.12em;
+
+  color: #e66a00;
+}
+
+
+/* =========================
+   Skills List
+========================= */
+
+.skillsList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 32px;
+}
+
+
+/* =========================
+   Skill Item
+========================= */
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 32px;
+
+  background-color: #f5f5f5;
+
+  text-align: center;
+}
+
+.skillNumber {
+  align-self: flex-start;
+
+  margin: 0 0 24px;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+
+  color: #e66a00;
+}
+
+
+/* =========================
+   Circle Graph
+========================= */
+
+.skillCircle {
+  width: 160px;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 24px;
+
+  border-radius: 50%;
+}
+
+
+/* 円の内側 */
+.skillCircleInner {
+  width: 126px;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #f5f5f5;
+}
+
+
+/* スキル名 */
+.skillName {
+  font-family: "BIZ UDPGothic", sans-serif;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #1a1a1a;
+}
+
+
+/* =========================
+   Circle Variation
+========================= */
+
+.htmlSkill {
+  background:
+    conic-gradient(
+      #e66a00 0deg 300deg,
+      #dddddd 300deg 360deg
+    );
+}
+
+.cssSkill {
+  background:
+    conic-gradient(
+      #e66a00 0deg 300deg,
+      #dddddd 300deg 360deg
+    );
+}
+
+.jsSkill {
+  background:
+    conic-gradient(
+      #e66a00 0deg 250deg,
+      #dddddd 250deg 360deg
+    );
+}
+
+.figmaSkill {
+  background:
+    conic-gradient(
+      #e66a00 0deg 275deg,
+      #dddddd 275deg 360deg
+    );
+}
+
+
+/* =========================
+   Skill Text
+========================= */
+
+.skillCategory {
+  margin: 0 0 12px;
+
+  font-size: 11px;
+  letter-spacing: 0.1em;
+
+  color: #e66a00;
+}
+
+.skillDescription {
+  max-width: 360px;
+
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: #555555;
+}
+
+
+/* =========================
+   Skills : RP
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .skills {
+    padding: 64px 20px;
+  }
+
+  .skillsList {
+    grid-template-columns: 1fr;
+  }
+
+  .skillItem {
+    padding: 28px 20px;
+  }
+
+  .skillCircle {
+    width: 140px;
+  }
+
+  .skillCircleInner {
+    width: 110px;
+  }
+
+}
+
+
+/* =========================
+  Works:Rp
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .works {
+    padding: 64px 20px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 32px;
+    font-size: 26px;
+  }
+
+  .worksList {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .workCardBody {
+    padding: 20px;
+  }
+
+  .workCardTitle {
+    font-size: 20px;
+  }
+
+}
+
+/* ========================================
+Contact
+======================================== */
+
+.contact {
+  padding: 96px 40px;
+  background-color: #f5f5f5;
+}
+
+.contactInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contactLabel {
+  margin-bottom: 40px;
+
+  font-size: 12px;
+  letter-spacing: 0.12em;
+
+  color: #e66a00;
+}
+
+
+/* =========================
+   Contact Box
+========================= */
+
+.contactBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 64px;
+
+  padding: 40px;
+
+  background-color: #ffffff;
+}
+
+.contactHeading {
+  margin: 0 0 16px;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+
+  color: #e66a00;
+}
+
+.contactText {
+  max-width: 460px;
+
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: #555555;
+}
+
+
+/* =========================
+   Contact Links
+========================= */
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 4px;
+
+  border-bottom: 1px solid #dddddd;
+
+  color: #1a1a1a;
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.contactLink:first-child {
+  border-top: 1px solid #dddddd;
+}
+
+.contactLink:hover {
+  color: #e66a00;
+  border-color: #e66a00;
+}
+
+.contactLinkLabel {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.contactArrow {
+  font-size: 16px;
+}
+
+
+/* =========================
+   X
+========================= */
+
+.contactX {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.contactIcon {
+  display: block;
+
+  width: 14px;
+  height: 14px;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   Contact : RP
+========================= */
+
+@media screen and (max-width: 767px) {
+
+  .contact {
+    padding: 64px 20px;
+  }
+
+  .contactBox {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+
+    padding: 28px 20px;
+  }
+
+}
+
+/* ========================================
+Footer
+======================================== */
+
+.footer {
+  padding: 48px 40px;
+  background-color: #f5f5f5;
+
+  font-size: 11px;
+}
+
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footerMeta {
+  line-height: 1.7;
+  color: #777777;
+  text-align: right;
+}
+
+.footerMeta p {
+  margin: 0;
+}
+
+.typefaceTitle {
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  color: #1a1a1a;
+}
+
+.copyright {
+  margin-top: 16px !important;
+}
